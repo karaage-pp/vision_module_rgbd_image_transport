@@ -1,0 +1,15 @@
+<launch>
+  # convert compressed_rqb to raw rgb
+  <node pkg="image_transport" type="republish" name="decompresser_rgb" args="compressed in:=/wlan raw out:=/ext/camera/rgb/image_rect_color">
+  </node>
+
+  # convert compressed_depth to raw depth
+  <node pkg="image_transport" type="republish" name="decompresser_depth" args="compressedDepth in:=/wlan_depth raw out:=/ext/camera/depth_registered/hw_registered/image_rect_raw">
+  </node>
+  
+  # run point csh camera info to external pc
+  <node pkg="vision_module_rgbd_image_transport" type="republisher_camera_info.py" name="republisher_camera_info"/>
+  
+  # point clouds generater
+  <include file="$(find vision_module_rgbd_image_transport)/launch/ready_for_making_point_clouds.launch"/> 
+</launch>

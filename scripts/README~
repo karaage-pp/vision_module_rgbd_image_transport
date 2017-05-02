@@ -1,0 +1,23 @@
+# Dependent Package
+1) 
+ros-indigo-openni2_camera
+ros-indigo-openni2_launch
+
+> 
+sudo apt-get install ros-indigo-openni2_launch rinos-indigo-openni2_camera
+
+2)
+image_transport_plugin
+>
+git clone 
+
+
+# Usage
+Internal_PC
+1.roslaunch vision_module_rgbd_image_transport wlan_internal.launch
+
+External_PC
+1.roslaunch vision_module_rgbd_image_transport wlan_external.launch
+2.roslaunch vision_module_rgbd_image_transport ready_for_making_point_clounds.launch
+
+

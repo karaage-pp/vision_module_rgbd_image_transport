@@ -1,0 +1,19 @@
+<launch>
+  # convert raw_rqb to compressed rgb
+  <node pkg="image_transport" type="republish" name="compresser_rgb" args="raw in:=/hsrb/head_rgbd_sensor/rgb/image_rect_color compressed out:=/wlan">
+  <!--param name="/wlan/compressed/format" value="png" type="str"/--> # "jpeg" or "png"
+  <!--param name="/wlan/compressed/jpeg_quality" value="50" type="int"/--> # 0-100
+  <!--param name="/wlan/compressed/png_level" value="" type="int"/--> # 0-9
+</node>
+
+  # convert raw depth to compressed depth
+  <node pkg="image_transport" type="republish" name="compresser_depth" args="raw in:=/hsrb/head_rgbd_sensor/depth_registered/image_rect_raw compressedDepth out:=/wlan_depth">
+  <!--param name="/wlan_depth/compressedDepth/depth_max" value="" type=""/-->
+  <!--param name="/wlan_depth/compressedDepth/depth_quantization" value="" type=""/--> #
+  <!--param name="/wlan_depth/compressedDepth/png_level" value="" type="int"/--> # 0-9
+  </node>
+
+
+  # publish camera info to external pc
+  <!--node pkg="vision_module_rgbd_image_transport" type="republisher_camera_info.py" name="republisher_camera_info"/-->
+</launch>
