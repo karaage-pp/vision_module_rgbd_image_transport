@@ -1,0 +1,22 @@
+<launch>
+  # convert compressed_rgb to raw rgb
+  <node pkg="image_transport" type="republish" name="decompresser_rgb" args="compressed in:=/wlan raw out:=/ext/camera/rgb/image_rect_color">
+  </node>
+  <!-- <node pkg="image_transport" type="republish" name="ext_decompresser_rgb" args="compressed in:=/hsrb/head_rgbd_sensor/rgb/image_rect_color raw out:=/ext/camera/rgb/image_rect_color"> -->
+  <!-- </node> -->
+
+
+  # convert compressed_depth to raw depth
+  <node pkg="image_transport" type="republish" name="decompresser_depth" args="compressedDepth in:=/wlan_depth raw out:=/ext/camera/depth_registered/image_raw">
+  </node>
+  # convert compressed_depth to raw depth
+  <!-- <node pkg="image_transport" type="republish" name="ext_decompresser_depth" args="compressedDepth in:=/hsrb/head_rgbd_sensor/depth_registered/image_rect_raw raw out:=/ext/camera/depth_registered/image_raw"> -->
+  <!-- </node> -->
+
+
+  <!-- # run camera info to external pc -->
+  <!-- <node pkg="vision_module_rgbd_image_transport" type="republisher_camera_info.py" name="republisher_camera_info"/> -->
+
+  # point clouds generater
+  <include file="$(find vision_module_rgbd_image_transport)/launch/fixed_ready_for_making_point_clouds.launch"/>
+</launch>
